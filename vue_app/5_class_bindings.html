@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        #box{
+            min-height: 300px;
+            min-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h3> Class Bindings</h3>
+    <ol>
+        <li>class binding is mechanism to dynamically applying classes to the element</li>
+        <li>we can use  <span style="color:blue;">v-bind:class="argument"</span></li>
+        <li>Argument can be object or array or string</li>
+    </ol>
+    <h3>Example :change color on mouseover and mouseout</h3>
+    <p>
+        There are 3 ways to define class
+        <ol>
+        <li> object format => :class="{'bg-info':!hovered,'bg-primary':hovered}"  </li>
+        <li> array format =>  :class=[hovered? 'bg-primary':'bg-info'] </li>
+        <li> string format => :class="bg-info" , assign class value as stringdynamically onhover</li>
+        </ol>
+    </p>
+    <div class="container" id="app">
+        <div id="box" class="row " 
+            :class="hovered" 
+            @mouseover="hovered = 'bg-info'" @mouseout="hovered ='bg-primary'" >
+            <div class="col my-auto text-center text-light">Mouse over here</div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data:{
+                hovered:"bg-info"
+            }
+        })
+       
+    </script>
+</body>
+</html>

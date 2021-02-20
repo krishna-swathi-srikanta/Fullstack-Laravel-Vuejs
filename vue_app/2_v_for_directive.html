@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <h3> Simple List Rendering - v for directive</h3>
+    <div class="container" id="app">
+        <ul class="list-group">
+            <li v-for="n in 3" class="list-group-item d-flex justify-content-between">{{n}}
+            
+        </ul>
+    </div>
+    <h3>List Rendering - v for directive on array </h3>
+    <div class="container py-5" id="app1">
+        <ul class="list-group">
+            <li v-for="(item ,i ) of list_items" class="list-group-item d-flex justify-content-between">{{item}}
+            <span class="badge badge-primary badge-pill">{{scores[i]}}</span></li>
+        </ul>
+    </div>
+    <h3>List Rendering - v for on single object </h3>
+    type 2 is simple array , here i am using object
+    <div class="container py-5" id="app2">
+        <ul class="list-group">
+            <li v-for="( score,item) of list_items" class="list-group-item d-flex justify-content-between">
+                {{item}}
+            <span class="badge badge-primary badge-pill">{{score}}</span></li>
+        </ul>
+    </div>
+    <h3>Render items to Table</h3>
+    <div class="container py-5" id="app3">
+    <table class="table table-sm">
+        <tr><th>Word</th><th>number</th></tr>
+        <tr v-for="(item,number) of list_items">
+            <td>{{item}}</td> <td>{{number}}</td>
+        </tr>
+    </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+        })
+        var app = new Vue({
+            el: '#app1',
+            data: {
+                list_items:["one","two","three","four"],
+                scores:[1,2,3,4]
+            }
+        })
+        var app = new Vue({
+            el: '#app2',
+            data: {
+                list_items:{"one":1,"two":6,"three":3,"four":4},
+            }
+        })
+        var app = new Vue({
+            el: '#app3',
+            data: {
+                list_items:{"one":1,"two":6,"three":3,"four":4},
+            }
+        })
+    </script>
+</body>
+</html>

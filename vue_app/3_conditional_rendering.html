@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container" >
+        <h3> Conditional Rendering </h3>
+        </br>
+        <h4>Example 1</h4>
+        <h4> v-if="boolean", v-else-if="boolean" , v-else</h4>
+        </br>
+        <ol>
+            <li>it will add an element when the boolean expression evaluates to true</li>
+            <li>it will remove element when the boolean expression evaluates to False</li>
+        </ol>
+        </br>
+        
+        <div  id="app1">
+            <div class="alert alert-warning" v-if="records.length < 0 ">
+                You have no records
+            </div>
+            <div class="alert alert-warning" v-else-if="records.length === 1 ">
+                You have only 1 record
+            </div>
+            <div class="alert alert-warning" v-else>
+                You have more than 1 record
+            </div>
+            
+        </div>  
+        <h4>Example 2</h4>
+        <h4>V-show</h4>
+        <p> This directive will show or hide the element</p>
+        <p> here v-if and v-show doing the same , but v-if is removing the element, v-show is applying display:none to the element</p>
+        <div  id="app2">
+            <div class="alert alert-warning" v-if="showAlertPrimary">
+                v-if alert
+            </div>
+            <div class="alert alert-warning" v-show="showAlertSecondary">
+                v-show
+            </div>
+            <div >
+                <button class="btn btn-primary" v-on:click="showAlertPrimary = !showAlertPrimary"> Toggale Message(v-if)</button>
+                <button class="btn btn-secondary" v-on:click="showAlertSecondary =!showAlertSecondary">Toggalse Massage(v-show)</button>
+            </div>
+            
+        </div>  
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="js/vue.js"></script>
+    <script>
+        //example for more than 1 record
+        var app = new Vue({
+            el: '#app1',
+            data:{
+                showAlert:true,
+                records:[1,2]
+            }
+        })
+        var app = new Vue({
+            el: '#app2',
+            data:{
+              showAlertPrimary:true,
+              showAlertSecondary:true
+            }
+        })
+       
+    </script>
+</body>
+</html>

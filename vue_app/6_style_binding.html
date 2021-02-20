@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        #box{
+            min-height: 300px;
+            min-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container" >
+        <h1> Style Bindings</h1>
+        <b>Style Binding </b> is mechanism for dynmically applying css definition element
+        use can use <span style="color:blue"> v-bind:style="argument"</span> or use can just use <span style="color:blue">:style="argument"</span>
+        Here argument can be <b> array </b> or <b> object </b>
+        <br>
+        
+        <h3>Example : Progress Bar</h3>
+        <pre>
+        <b> 1. Style as object </b>
+        here key can be camelcase like fontSize , or snake case like font-size
+    
+        <span style="color:blue"> &lt;div&gt;  :style="mystyle"> something here &lt;div&gt; </span>      
+        mystyle:{
+            color:blue,
+            padding:'2px',
+
+        }
+        </pre>
+        <div id="app">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" :style="{'width':width+'%'}" aria-valuenow="0%">{{width}}%</div>
+            </div>
+            </br>
+            <input type="range" min="0" max="100" v-model=width>
+        </div>
+        <h3>Example : Customize style options</h3>
+        <p>
+            on changing options dynamically change the styling using simple v-model and assign array argument to the style
+        </p>
+        <pre>
+        <b> 2. Style as array </b>
+        we can combine  2 or more style like this 
+
+        a:{
+            color:white,
+        }
+        b:{
+            padding:'2px',
+        }
+        <span style="color:blue"> &lt;div&gt;  :style="[a,b]"> something here &lt;div&gt; </span>
+        </pre>
+        <div id="box">
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label>Background</label>
+                    <select v-model="style1.backgroundColor" class="form-control">
+                        <option value="white">white</option>
+                        <option value="green">green</option>
+                    </select>
+                    
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Text color</label>
+                    <select v-model="style2.color" class="form-control">
+                        <option value="black">black</option>
+                        <option value="red">red</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Border</label>
+                    <select v-model="style3.border" class="form-control">
+                        <option value="2px dashed red">2px red</option>
+                        <option value="4px dashed green">4px green</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Text Transformation</label>
+                    <select v-model="style4.textTransform" class="form-control">
+                        <option value="capitalize">capitalize</option>
+                        <option value="lowercase">lowercase</option>
+                        <option value="uppercase">uppercase</option>
+                    </select>
+                </div>
+            </div>
+            <div class="display-1 p-5" :style="[style1,style2,style3,style4]">Style Me</div>
+            
+            <pre>
+
+
+
+
+
+            </pre>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data:{
+                width:50
+            }
+        });
+        var app = new Vue({
+            el: '#box',
+            data:{
+                style_new:"white",
+                style1:{
+                    backgroundColor:'white'
+                },
+                style2:{
+                    color:'black'
+                },
+                style3:{
+                    border:'2px dashed red'
+                },
+                style4:{
+                    textTransform:'capitalize'
+                }
+            }
+        })
+       
+    </script>
+</body>
+</html>

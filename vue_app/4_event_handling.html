@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        #box{
+            min-height: 300px;
+            min-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5" id="app">
+        <h3> Event Handling </h3>
+        </br>
+        <ol>
+            <li>Event is something that happend inside html element </li>
+            <li>Event can be trigger by browser or user ,for example</li>
+            <ul>
+                <li>The page has finished loaded </li>
+                <li>A button clicked</li>
+                <li>Form submitted</li>
+            </ul>
+            <li>when even triggered , list event and do something</li>
+            <li>v-on:even="do something" or @event=" do something" </li>
+            <li>Evenets like : click, double click, mouse hover,mouse move </li>
+        </ol>
+        <h4>Example 1</h4>
+        <h4>Vote your favorite Framework</h4>
+        <div  id="app1">
+        </br>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between" v-for="framework in frameworks">{{framework.name}}
+                    
+                    <button class="btn btn-outline-primary" v-on:click="upvote(framework)">
+                        Upvote       
+                        <span class="badge badge-primary badge-pill">{{framework.vote}}</span>
+                    </button>
+                </li>
+            </ul>
+        </br>
+            <!--
+            On submit event
+            -->
+            <form v-on:submit.prevent="handleSubmit" class="form">
+                <input type="text" class="form-control" placeholder="Enter ur another favorite Framework" v-model="new_framework">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="submit"> Submit</button>
+                </div>
+            </form>
+            <!-- on key event
+            keycode of the enterkey is 13 v-on:keyup.13="handlekey"
+            -->
+            <br>
+            <p> Input without submit button</p>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Enter ur another favorite Framework" v-on:keyup.enter="handlekey"  v-on:keyup.esc="clearText" v-model="new_framework2">
+            </div>
+        
+        </div> 
+        <h4>Example 2</h4>
+        <h4>Get coordinates of plane on mouse hover</h4>
+        <div id="app2">
+            <div class="row bg-info" id="box" v-on:mousemove="getCoordinates">
+                <div class="col my-auto text-center text-light">
+                    Mouse Over Here 
+                </div>
+            </div>
+            <p class="lead text-center mt-3">
+                <span class="badge badge-primary badge-pill">x</span>{{x}}
+                <span class="badge badge-primary badge-pill">y</span>{{y}}
+            </p>
+        </div>
+        <h3>Event Modifiers</h3>
+        <p> Event Modifier can modify the triggered event</p>
+        <ol>
+            <li>prevent</li>
+            <li>stop</li>
+            <li>capture</li>
+            <li>self</li>
+            <li>once</li>
+            <li>passive</li>
+        </ol>
+        <h3>Key Modifier</h3>
+        <ol>
+            <li>Enter</li>
+            <li>tab</li>
+            <li>delete</li>
+            <li>esc</li>
+            <li>space</li>
+            <li>up</li>
+            <li>down</li>
+            <li>left</li>
+            <li>right</li>
+        </ol>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="js/vue.js"></script>
+    <script>
+       
+        var app = new Vue({
+            el: '#app1',
+            data:{
+               frameworks:[{name:"Django",vote:3},{name:"Flask",vote:2},{name:"Vuejs",vote:1}],
+               new_framework:"",
+               new_framework2:""
+            },
+            methods:{
+                upvote(framework){
+                    framework.vote++;
+                },
+                handleSubmit(){
+                    if(this.new_framework.trim()){
+                        this.frameworks.push({name:this.new_framework,vote:0});
+                        this.new_framework="";
+                    }
+                },
+                handlekey(){
+                    if(this.new_framework2.trim()){
+                        this.frameworks.push({name:this.new_framework2,vote:0});
+                        this.new_framework2="";   
+                    }
+                },
+                clearText(){
+                    this.new_framework2="";
+                },
+              
+                
+            }
+        })
+        var app2 = new Vue({
+            el: '#app2',
+            data:{
+               x:0,
+               y:0,
+            },
+            methods:{
+                getCoordinates(event){
+                    this.x=event.clientX;
+                    this.y=event.clientY;
+                }
+            }
+        })
+       
+    </script>
+</body>
+</html>
