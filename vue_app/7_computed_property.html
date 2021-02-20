@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <style>
+       .sort-control{
+           cursor:pointer;
+       }
+       .ascending::after{
+            content: "\25b2";
+       }
+       .descending::after{
+           content: "\25bc";
+       }
+   </style>
+</head>
+<body>
+    
+    <div class="container" >
+        <h3>Computed Properties</h3>
+        <div id="app">
+            <h4>Example1 </h4>
+            {{upperName()}} - {{lowerName}}
+            <input type="text" class="form-control" v-model="firstName" name="firstName">
+            <input type="text" class="form-control" v-model="lastName" name="lastName"> 
+            <h4>Example 2</h4>
+            List top 3 frame works with column level sort option 
+            <table class="table table-sm table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr><th>Framework</th>
+                    <th @click="toggle" :class="['sort-control',sortType]"> Score </th></tr>
+                </thead>
+                <tbody>
+                    <tr v-for="i in frameworksSorted">
+                        <td>{{i.name}}</td>
+                        <td>{{i.score}}</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div> 
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="js/vue.js"></script>
+    <script>
+        var title="Ms";
+        var app = new Vue({
+            el: '#app',
+            data:{
+                firstName:"krishna",
+                lastName:"swathi",
+                frameworks:[
+                    {name:"Flask",score:90},
+                    {name:"Django",score:20},
+                    {name:"Vuejs",score:50}
+                ],
+                order:1
+            },
+            methods:{
+                upperName(){
+                    console.log("upper name ");
+                    return (title+' '+this.firstName).toUpperCase();
+                },
+                toggle(){
+                    return this.order=this.order*-1;
+                }
+            },
+            computed:{
+                lowerName(){
+                    console.log("lower name ");
+                    return (this.lastName).toLowerCase();
+                },
+                frameworksSorted(){
+                    return this.frameworks.sort((a,b)=>(a.score-b.score)*this.order);
+                },
+                sortType(){
+                   
+                    return this.order == 1 ? 'ascending':'descending';
+                }
+                
+            }
+           
+        });
+        
+       
+    </script>
+</body>
+</html>
